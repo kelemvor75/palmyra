@@ -24,7 +24,7 @@
 
   body {
     font-family: 'Cormorant Garamond', serif;
-    background: var(--dark);
+    background: radial-gradient(ellipse at 50% 0%, #1a1040 0%, var(--dark) 70%);
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
@@ -35,21 +35,79 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
+      radial-gradient(ellipse at 50% 0%, rgba(26, 16, 64, 0.6) 0%, transparent 50%),
       radial-gradient(ellipse at 20% 50%, rgba(45, 27, 78, 0.4) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 20%, rgba(100, 50, 120, 0.2) 0%, transparent 50%),
-      radial-gradient(1px 1px at 10% 10%, rgba(255,255,255,0.6), transparent),
-      radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1px 1px at 50% 30%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.6), transparent),
-      radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1.5px 1.5px at 15% 40%, rgba(212,168,83,0.6), transparent),
-      radial-gradient(1.5px 1.5px at 75% 75%, rgba(212,168,83,0.4), transparent);
+      radial-gradient(1px 1px at 5% 8%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 12% 65%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 18% 25%, rgba(212,168,83,0.8), transparent),
+      radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 32% 42%, rgba(180,160,255,0.5), transparent),
+      radial-gradient(1px 1px at 40% 12%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 48% 78%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 55% 35%, rgba(212,168,83,0.6), transparent),
+      radial-gradient(1px 1px at 62% 55%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 68% 88%, rgba(180,160,255,0.4), transparent),
+      radial-gradient(1px 1px at 75% 18%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 82% 48%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1.5px 1.5px at 88% 72%, rgba(212,168,83,0.5), transparent),
+      radial-gradient(1px 1px at 93% 30%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 8% 50%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 45% 5%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 72% 95%, rgba(180,160,255,0.3), transparent);
     background-size: 100% 100%;
     z-index: -1;
     pointer-events: none;
+  }
+
+  /* Glowing Moon */
+  .moon {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #f5f0d0, #d4c87a, #b8a84a);
+    box-shadow: 0 0 30px rgba(212,168,83,0.4), 0 0 60px rgba(212,168,83,0.15);
+    animation: moonGlow 4s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes moonGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(212,168,83,0.4), 0 0 60px rgba(212,168,83,0.15); }
+    50% { box-shadow: 0 0 45px rgba(212,168,83,0.6), 0 0 80px rgba(212,168,83,0.25); }
+  }
+
+  /* Constellation SVG */
+  .constellation {
+    position: fixed;
+    top: 15px;
+    right: 60px;
+    width: 100px;
+    height: 80px;
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .constellation line { stroke: rgba(180,160,255,0.6); stroke-width: 1; }
+  .constellation circle { fill: rgba(220,200,255,0.9); }
+
+  /* Zodiac Ring */
+  .zodiac-ring {
+    text-align: center;
+    font-size: 1.1em;
+    letter-spacing: 6px;
+    color: rgba(212,168,83,0.35);
+    margin: 10px 0 5px;
+    animation: breathe 8s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.5; letter-spacing: 6px; }
+    50% { opacity: 0.8; letter-spacing: 9px; }
   }
 
   .container {
@@ -96,8 +154,8 @@
   .welcome-art {
     text-align: center;
     font-size: 80px;
-    margin: 30px 0;
-    filter: grayscale(0.3);
+    margin: 20px 0 10px;
+    filter: drop-shadow(0 0 25px rgba(212,168,83,0.3));
   }
 
   .welcome-text {
@@ -327,6 +385,7 @@
   .crystal-ball {
     font-size: 60px;
     animation: float 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(130,80,200,0.4));
   }
 
   @keyframes float {
@@ -355,6 +414,7 @@
     margin: 10px 0;
     line-height: 1.8;
     font-size: 1.1em;
+    box-shadow: 0 0 30px rgba(45,27,78,0.3);
   }
 
   .reading-content h3 {
@@ -535,6 +595,22 @@
 </head>
 <body>
 
+<!-- Celestial decorations -->
+<div class="moon"></div>
+<svg class="constellation" viewBox="0 0 120 100">
+  <line x1="15" y1="12" x2="50" y2="32"/>
+  <line x1="50" y1="32" x2="85" y2="18"/>
+  <line x1="50" y1="32" x2="35" y2="65"/>
+  <line x1="35" y1="65" x2="70" y2="80"/>
+  <line x1="70" y1="80" x2="95" y2="60"/>
+  <circle cx="15" cy="12" r="2.5"/>
+  <circle cx="50" cy="32" r="3"/>
+  <circle cx="85" cy="18" r="2"/>
+  <circle cx="35" cy="65" r="2.5"/>
+  <circle cx="70" cy="80" r="2"/>
+  <circle cx="95" cy="60" r="2.5"/>
+</svg>
+
 <div class="container" style="position:relative;">
   <div class="settings-icon" onclick="openSettings()">&#9881;</div>
 
@@ -545,6 +621,7 @@
 
   <!-- WELCOME -->
   <div id="welcomeScreen" class="screen active">
+    <div class="zodiac-ring">&#9800; &#9801; &#9802; &#9803; &#9804; &#9805; &#9806; &#9807; &#9808; &#9809; &#9810; &#9811;</div>
     <div class="welcome-art">&#129306;&#10024;</div>
     <div class="welcome-text">
       The lines of your palm hold secrets written before your first breath.
