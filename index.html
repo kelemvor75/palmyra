@@ -217,33 +217,46 @@
 
   .capture-area {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 15px 20px;
   }
 
   .capture-btn {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    background: transparent;
+    width: 100%;
+    max-width: 400px;
+    padding: 18px;
+    border-radius: 50px;
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, rgba(212,168,83,0.25), rgba(212,168,83,0.1));
     cursor: pointer;
-    position: relative;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1em;
+    color: var(--gold);
+    letter-spacing: 1px;
     transition: all 0.2s;
   }
 
-  .capture-btn::after {
-    content: '';
-    position: absolute;
-    top: 5px; left: 5px; right: 5px; bottom: 5px;
-    background: var(--gold);
-    border-radius: 50%;
-    transition: all 0.2s;
+  .capture-btn:active {
+    transform: scale(0.97);
+    background: linear-gradient(135deg, rgba(212,168,83,0.4), rgba(212,168,83,0.2));
   }
 
-  .capture-btn:active::after { transform: scale(0.85); }
   .capture-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .camera-bottom-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .camera-bottom-row .btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 0.9em;
+  }
 
   .captured-image {
     width: 100%;
@@ -562,10 +575,12 @@
       <div id="handBadge" class="hand-detected-badge">Hand Detected &#10003;</div>
     </div>
     <div class="capture-area">
-      <button class="btn secondary" onclick="flipCamera()" style="font-size:0.85em;padding:10px 20px;max-width:140px;">Flip Camera</button>
-      <button id="captureBtn" class="capture-btn" onclick="capturePhoto()" disabled title="Capture"></button>
+      <button id="captureBtn" class="capture-btn" onclick="capturePhoto()" disabled>Capture Palm</button>
+      <div class="camera-bottom-row">
+        <button class="btn secondary" onclick="flipCamera()">Flip Camera</button>
+        <button class="btn secondary" onclick="goHome()">Cancel</button>
+      </div>
     </div>
-    <button class="btn secondary" onclick="goHome()" style="font-size:0.9em;">Cancel</button>
   </div>
 
   <!-- REVIEW -->
